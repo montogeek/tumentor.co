@@ -37,6 +37,15 @@ defmodule Tumentor.Mentors do
   """
   def get_mentor!(id), do: Repo.get!(Mentor, id)
 
+  def get_mentor_by_user_id!(id) do
+    query =
+      from mentor in Tumentor.Mentors.Mentor,
+        where: mentor.user_id == ^id,
+        select: mentor.name
+
+    Repo.one!(query)
+  end
+
   @doc """
   Creates a mentor.
 

@@ -7,6 +7,7 @@ defmodule Tumentor.Mentors.Mentor do
     field :name, :string
     field :schedule_url, :string
     field :topics, :map
+    belongs_to :user, Tumentor.Accounts.User
 
     timestamps()
   end

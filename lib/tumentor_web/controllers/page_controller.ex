@@ -21,11 +21,9 @@ defmodule TumentorWeb.PageController do
     mentors =
       Enum.map(mentors, fn mentor ->
         path =
-          case URI.parse(mentor.schedule_url) do
+          case URI.parse(mentor.schedule_url || "") do
             %URI{path: path} -> path
           end
-
-        IO.puts(path)
 
         %{mentor | topics: normalize_topics(Map.get(mentor, :topics)), schedule_url: path}
       end)
