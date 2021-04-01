@@ -91,9 +91,13 @@ defmodule TumentorWeb.UserAuth do
   def fetch_current_user(conn, _opts) do
     {user_token, conn} = ensure_user_token(conn)
     user = user_token && Accounts.get_user_by_session_token(user_token)
-    mentor = Tumentor.Mentors.get_mentor_by_user_id!(user.id)
+    mentor = user && Tumentor.Mentors.get_mentor_by_user_id!(user.id)
 
-    assign(conn, :current_user, Map.put(user, :name, mentor))
+    if user do
+      assign(conn, :current_user, Map.put(user, :name, mentor))
+    else
+      conn
+    end
   end
 
   defp ensure_user_token(conn) do
