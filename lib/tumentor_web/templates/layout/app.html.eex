@@ -7,22 +7,39 @@
     <title>Tumentor · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
   </head>
   <body>
     <header>
       <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-          <%= render "_user_menu.html", assigns %>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="<%= Routes.static_path(@conn, "/images/school-outline.svg") %>" width="50" />
+      TuMentor
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a href="/" class="navbar-item">
+        Inicio
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <%= render "_user_menu.html", assigns %>
+      </div>
+    </div>
+  </div>
+</nav>
       </section>
     </header>
     <main role="main" class="container">
@@ -30,5 +47,17 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
+    <footer class="footer">
+  <div class="content has-text-centered">
+    <a href="https://bulma.io">
+  <img
+    src="https://bulma.io/images/made-with-bulma--dark.png"
+    alt="Made with Bulma"
+    width="128"
+    height="24">
+</a>
+    <p>* No es un proyecto oficial de <a href="https://colombia-dev.org/">Colombia.dev</a></p>
+  </div>
+</footer>
   </body>
 </html>

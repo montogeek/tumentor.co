@@ -1,10 +1,22 @@
-<ul>
 <%= if assigns[:current_user] do %>
-  <li><%= @current_user.name %></li>
-  <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></li>
-  <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
+  <div class="mr-3"><%= @current_user.name %></div>
+  <div class="buttons">
+  <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+              <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "button is-danger is-light" %>
+            <% end %>
+  <%= link "Perfil", to: Routes.user_settings_path(@conn, :edit), class: "button is-primary" %>
+  <%= link "Cerrar session", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "button is-light" %>
+  </div>
 <% else %>
-  <li><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></li>
-  <li><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></li>
+<div class="buttons">
+<%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+              <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "button is-danger is-light" %>
+            <% end %>
+  <a class="button is-primary" href="<%= Routes.user_registration_path(@conn, :new) %>">
+    <strong>Registrarse</strong>
+  </a>
+  <a class="button is-light" href="<%= Routes.user_session_path(@conn, :new) %>">
+    Iniciar sesion
+  </a>
+  </div>
 <% end %>
-</ul>

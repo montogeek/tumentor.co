@@ -1,51 +1,32 @@
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<section class="phx-hero">
-  <h1>Tu Mentor</h1>
-  <%# <p>Peace of mind from prototype to production</p> %>
+<section class="hero is-medium">
+  <div class="hero-body">
+    <h1 class="title is-1">
+      TuMentor
+    </h1>
+    <h2 class="subtitle is-3">
+      Crecer to carrera con mentorias <b>gratuitas</b><br/> de programacion por miembros de Colombia.dev*
+    </h2>
+  </div>
 </section>
-<h2>Mentores actuales</h2>
-<dl>
+<section class="section">
+  <h1 class="title">Mentores disponibles</h1>
+  <h2 class="subtitle">
+    A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
+  </h2>
+  <div class="columns is-multiline">
   <%= for mentor <- @mentors do %>
-      <dt><%= Map.get(mentor, :name) %></dt>
-      <dd><%= Map.get(mentor, :topics) %></dd>
-      <dd><a href="<%= Map.get(mentor, :github_url) %>"><%= Map.get(mentor, :github_url) %></a>
+  <div class="column is-one-quarter">
+    <div class="box">
+      <strong><%= Map.get(mentor, :name) %></strong>
+      <p class="has-text-grey"><%= Map.get(mentor, :topics) %></p>
+      <p><a href="<%= Map.get(mentor, :github_url) %>"><span class="icon"><img src="<%= Routes.static_path(@conn, "/images/logo-github.svg") %>" width="50" /></span></a>
       <dd><a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com<%= Map.get(mentor, :schedule_url) %>'});return false;">Programar mentoria</a>
       </dd>
+     </div>
+     </div>
   <% end %>
-</dl>
+</div>
+</section>
 
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-<%# <section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.5/CHANGELOG.md">v1.5 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-      <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
-      </li>
-    </ul>
-  </article>
-</section> %>
